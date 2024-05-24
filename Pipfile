@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pycountry = "==23.12.11"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
