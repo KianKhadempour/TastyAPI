@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fc0767694216cff0a48911c1bcba0c6bb657ba9ece07f0125ce831c49bd7e967"
+            "sha256": "da4ceb8b200aa1661d90d23c155b3e696c5487a07b33f524dfe026cf4d96b0f5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -24,6 +24,19 @@
             "index": "pypi",
             "markers": "python_version >= '3.8'",
             "version": "==23.12.11"
+        },
+        "python-iso639": {
+            "hashes": [
+                "sha256:27526a84cebc4c4d53fea9d1ebbc7209c8d279bebaa343e6765a1fc8780565ab",
+                "sha256:97e63b5603e085c6a56a12a95740010e75d9134e0aab767e0978b53fd8824f13"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==2024.4.27"
+        },
+        "tasty-api": {
+            "editable": true,
+            "file": "."
         }
     },
     "develop": {}

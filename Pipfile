@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 pycountry = "==23.12.11"
+python-iso639 = "==2024.4.27"
+tasty-api = {file = ".", editable = true}
 
 [dev-packages]
 
