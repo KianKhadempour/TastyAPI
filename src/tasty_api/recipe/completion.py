@@ -7,14 +7,12 @@ from dataclasses import dataclass
 class Completion:
     """Represents the result of an auto complete search."""
 
-    display: str
-    search_value: str
+    value: str
     type: str
 
     @classmethod
     def from_dict(cls, data: dict[str, str]) -> Completion:
         return Completion(
-            display=data["display"],
-            search_value=data["search_value"],
+            value=data["display"],
             type=data["type"],
         )
