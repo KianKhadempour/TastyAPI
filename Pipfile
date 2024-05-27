@@ -4,13 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pycountry = "==23.12.11"
-python-iso639 = "==2024.4.27"
+pycountry = "*"
+python-iso639 = "*"
+requests = "*"
 tasty-api = {file = ".", editable = true}
-requests = "==2.32.2"
-dataclass-wizard = "==0.22.3"
 
 [dev-packages]
+sphinx = "*"
 
 [requires]
 python_version = "3.12"

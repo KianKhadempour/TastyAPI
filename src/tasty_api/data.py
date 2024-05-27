@@ -3,20 +3,20 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from dataclass_wizard import JSONWizard
-
 from tasty_api.recipe import Completion, Recipe
 
 
-@dataclass
-class CompletionData(JSONWizard):
-    """JSONWizard to destructure auto complete requests."""
-
-    class _(JSONWizard.Meta):
-        debug_enabled = True
-        key_transform_with_dump = "SNAKE"
+@dataclass(frozen=True, slots=True)
+class CompletionData:
+    """Custom class to destructure auto complete requests."""
 
     results: list[Completion]
+
+    @classmethod
+    def from_dict(cls, data: dict[str, list[dict[str, str]]]) -> CompletionData:
+        return CompletionData(
+            [Completion.from_dict(result) for result in data["results"]]
+        )
 
 
 @dataclass(frozen=True, slots=True)
