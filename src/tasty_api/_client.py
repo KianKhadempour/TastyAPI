@@ -1,9 +1,11 @@
+from datetime import UTC, time, tzinfo
 from enum import StrEnum
 
 import requests
 
-from tasty_api.constants import TASTY_HOST
+from tasty_api._constants import TASTY_HOST
 from tasty_api.data import CompletionData, RecipeListData
+from tasty_api.feed import Feed
 from tasty_api.recipe import Completion, Recipe
 from tasty_api.tag import Tag, tag_list_to_str
 
@@ -12,6 +14,10 @@ class SortingMethod(StrEnum):
     POPULAR = "popular"
     DESCENDING = "approved_at:desc"
     ASCENDING = "approved_at:asc"
+
+
+def _timezone_to_utc_offset(timezone_: tzinfo) -> str:
+    return time(tzinfo=timezone_).strftime("%z")
 
 
 class Client:
@@ -38,7 +44,7 @@ class Client:
         """
         Get auto complete suggestions by name or ingredients.
 
-        :param str prefix: The text that will be completed.
+        :param str prefix: The text to be auto completed.
         :return list[Completion]: A list of possible auto completions.
         """
 
@@ -100,7 +106,7 @@ class Client:
 
         url = "https://tasty.p.rapidapi.com/recipes/list-similarities"
 
-        querystring = {"recipe_id": recipe_id}
+        querystring = {"recipe_id": str(recipe_id)}
 
         response = self._session.get(url, params=querystring)
 
@@ -125,3 +131,36 @@ class Client:
         recipe = Recipe.from_dict(response.json())
 
         return recipe
+
+    def get_feeds_list(
+        self,
+        offset: int,
+        size: int,
+        vegetarian: bool,
+        timezone_: tzinfo = UTC,
+    ) -> list[Feed]:
+        """
+        Get a list of the latests feeds.
+
+        Feeds are lists of recipes specifically categorized.
+
+        :param int offset: The amount of feeds to skip.
+        :param int size: The amount of feeds to get.
+        :param bool vegetarian: List vegetarian recipes only.
+        :return list[Feed]: The list of feeds.
+        """
+
+        url = "https://tasty.p.rapidapi.com/feeds/list"
+
+        querystring = {
+            "size": str(size),
+            "timezone": _timezone_to_utc_offset(timezone_),
+            "vegetarian": "true" if vegetarian else "false",
+            "from": str(offset),
+        }
+
+        response = self._session.get(url, params=querystring)
+
+        data = [Feed.from_dict(result) for result in response.json()["results"]]
+
+        return data
