@@ -7,6 +7,8 @@ name = "pypi"
 pycountry = "==23.12.11"
 python-iso639 = "==2024.4.27"
 tasty-api = {file = ".", editable = true}
+requests = "==2.32.2"
+dataclass-wizard = "==0.22.3"
 
 [dev-packages]
 

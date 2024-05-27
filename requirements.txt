@@ -1,2 +1,4 @@
 pycountry==23.12.11
-python-iso639==2024.4.27 
+python-iso639==2024.4.27
+requests==2.32.2
+dataclass-wizard==0.22.3

@@ -1,6 +1,9 @@
-from dataclasses import dataclass
+from __future__ import annotations
 
-from tasty_api.recipe import Component
+from dataclasses import dataclass
+from typing import Any
+
+from .component import Component
 
 
 @dataclass(frozen=True, slots=True)
@@ -10,3 +13,13 @@ class Section:
     components: list[Component]
     name: str | None
     position: int
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> Section:
+        return Section(
+            components=[
+                Component.from_dict(component) for component in data["components"]
+            ],
+            name=data["name"],
+            position=data["position"],
+        )
