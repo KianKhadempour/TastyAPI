@@ -5,6 +5,8 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True, slots=True)
 class Topic:
+    """Represents a topics of the recipe."""
+
     name: str
     slug: str
 

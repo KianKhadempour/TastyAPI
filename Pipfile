@@ -11,6 +11,8 @@ tasty-api = {file = ".", editable = true}
 
 [dev-packages]
 sphinx = "*"
+sphinx-rtd-theme = "*"
+esbonio = "*"
 
 [requires]
 python_version = "3.12"

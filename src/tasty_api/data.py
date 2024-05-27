@@ -21,7 +21,7 @@ class CompletionData:
 
 @dataclass(frozen=True, slots=True)
 class RecipeListData:
-    """Custom class to destructure recipe/list requests."""
+    """Custom class to destructure recipes/list requests."""
 
     count: int
     results: list[Recipe]

@@ -5,7 +5,7 @@ TastyAPI is a typed Python wrapper for the [Tasty API](https://rapidapi.com/apid
 ## Example
 
 ```py
-from tasty_api.client import Client
+from tasty_api import Client
 
 client = Client("(api_key)")
 

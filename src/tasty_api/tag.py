@@ -7,6 +7,8 @@ from typing import Any
 
 @dataclass(frozen=True, slots=True)
 class Tag:
+    """Represents a tag of a recipe."""
+
     id: int
     type: str
     name: str
@@ -23,6 +25,13 @@ class Tag:
 
 
 def tag_list_to_str(tags: list[Tag]) -> str:
+    """
+    Helper function to turn a list of Tag objects into a TastyAPI compatible string. Used when filtering requests by tags.
+
+    :param list[Tag] tags: The list of Tag objects.
+    :return str: A formatted string containing all the tags, ready for use in an requests.
+    """
+
     buffer = StringIO()
 
     for i, tag in enumerate(tags):
