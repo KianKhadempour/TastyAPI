@@ -7,6 +7,8 @@ from typing import Any
 
 @dataclass(frozen=True, slots=True)
 class TipMetadata:
+    """Represents the metadata of a Tip object."""
+
     author_avatar_url: str
     author_rating: int
     author_user_id: int
@@ -33,15 +35,19 @@ class TipMetadata:
             comment_id=data["comment_id"],
             comment_count=data["comment_count"],
             tip_id=data["tip_id"],
-            created_at=datetime.fromtimestamp(data["created_at"])
-            if data["created_at"] is not None
-            else None,
+            created_at=(
+                datetime.fromtimestamp(data["created_at"])
+                if data["created_at"] is not None
+                else None
+            ),
             updated_at=datetime.fromtimestamp(data["updated_at"]),
         )
 
 
 @dataclass(frozen=True, slots=True)
 class Tip:
+    """Represents a tip (review) for a specific recipe."""
+
     metadata: TipMetadata
     author_name: str
     author_username: str

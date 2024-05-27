@@ -21,6 +21,8 @@ from .topic import Topic
 
 @dataclass(frozen=True, slots=True)
 class RecipeMetadata:
+    """Represents the metadata of a recipe."""
+
     approved_at: datetime
     aspect_ratio: str
     beauty_url: str | None

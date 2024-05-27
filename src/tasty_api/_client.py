@@ -4,10 +4,11 @@ from enum import StrEnum
 import requests
 
 from tasty_api._constants import TASTY_HOST
-from tasty_api.data import CompletionData, RecipeListData
+from tasty_api.data import CompletionData, RecipeListData, TagListData, TipListData
 from tasty_api.feed import Feed
 from tasty_api.recipe import Completion, Recipe
 from tasty_api.tag import Tag, tag_list_to_str
+from tasty_api.tip import Tip
 
 
 class SortingMethod(StrEnum):
@@ -134,19 +135,20 @@ class Client:
 
     def get_feeds_list(
         self,
-        offset: int,
-        size: int,
         vegetarian: bool,
-        timezone_: tzinfo = UTC,
+        timezone: tzinfo = UTC,
+        offset: int = 0,
+        size: int = 5,
     ) -> list[Feed]:
         """
         Get a list of the latests feeds.
 
-        Feeds are lists of recipes specifically categorized.
+        Feeds are lists of specifically categorized recipes.
 
         :param int offset: The amount of feeds to skip.
         :param int size: The amount of feeds to get.
         :param bool vegetarian: List vegetarian recipes only.
+        :param tzinfo timezone: Your timezone. Defaults to UTC.
         :return list[Feed]: The list of feeds.
         """
 
@@ -154,7 +156,7 @@ class Client:
 
         querystring = {
             "size": str(size),
-            "timezone": _timezone_to_utc_offset(timezone_),
+            "timezone": _timezone_to_utc_offset(timezone),
             "vegetarian": "true" if vegetarian else "false",
             "from": str(offset),
         }
@@ -164,3 +166,45 @@ class Client:
         data = [Feed.from_dict(result) for result in response.json()["results"]]
 
         return data
+
+    def get_tags_list(self) -> list[Tag]:
+        """
+        Get a list of all tags.
+
+        :return list[Tag]: The list of tags.
+        """
+
+        url = "https://tasty.p.rapidapi.com/tags/list"
+
+        response = self._session.get(url)
+
+        data = TagListData.from_dict(response.json())
+
+        return data.results
+
+    def get_tips_list(
+        self, recipe_id: int, offset: int = 0, size: int = 30
+    ) -> list[Tip]:
+        """
+        Get a list of tips (reviews) pertaining to a recipe.
+
+        :param int recipe_id: The recipe ID.
+        :param int offset: The amount of tips to skip.
+        :param int size: The amount of tips to get.
+
+        :return list[Tip]: The list of tips.
+        """
+
+        url = "https://tasty.p.rapidapi.com/tips/list"
+
+        querystring = {
+            "id": str(recipe_id),
+            "from": str(offset),
+            "size": str(size),
+        }
+
+        response = self._session.get(url, params=querystring)
+
+        data = TipListData.from_dict(response.json())
+
+        return data.results
