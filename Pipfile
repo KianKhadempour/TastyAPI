@@ -7,7 +7,7 @@ name = "pypi"
 pycountry = "*"
 python-iso639 = "*"
 requests = "*"
-tasty-api = {file = ".", editable = true}
+tasty-api = {file = "."}
 
 [dev-packages]
 sphinx = "*"

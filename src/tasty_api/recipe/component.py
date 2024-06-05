@@ -7,6 +7,10 @@ from .ingredient import Ingredient
 from .measurement import Measurement
 
 
+class IncompatibleComponentError(ValueError):
+    pass
+
+
 @dataclass(frozen=True, slots=True)
 class Component:
     """
@@ -34,3 +38,33 @@ class Component:
             position=data["position"],
             raw_text=data["raw_text"],
         )
+
+    def __add__(self, other: Component) -> Component:
+        if self.id != other.id:
+            raise IncompatibleComponentError(
+                "Components must be the same in order to add their amounts."
+            )
+
+        ret = Component(
+            extra_comment="",
+            id=self.id,
+            ingredient=self.ingredient,
+            measurements=[],
+            position=0,
+            raw_text="",
+        )
+
+        for measurement in self.measurements:
+            for other_measurement in other.measurements:
+                if measurement.id != other_measurement.id:
+                    continue
+
+                ret.measurements.append(
+                    Measurement(
+                        id=measurement.id,
+                        quantity=measurement.quantity + other_measurement.quantity,
+                        unit=measurement.unit,
+                    )
+                )
+
+        return ret
