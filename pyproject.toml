@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "tasty_api"
-version = "0.0.1"
+version = "0.1.0"
 authors = [{ name = "Kian Khadempour" }]
 description = "Typed Python wrapper for the Tasty API on RapidAPI."
 readme = "README.md"
