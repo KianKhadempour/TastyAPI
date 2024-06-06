@@ -1,6 +1,6 @@
 alabaster==0.7.16; python_version >= '3.9'
 babel==2.15.0; python_version >= '3.8'
-certifi==2024.2.2; python_version >= '3.6'
+certifi==2024.6.2; python_version >= '3.6'
 charset-normalizer==3.3.2; python_full_version >= '3.7.0'
 colorama==0.4.6; sys_platform == 'win32'
 docutils==0.20.1; python_version >= '3.7'
