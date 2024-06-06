@@ -3,3 +3,5 @@
 main.py
 __pycache__/
 _build/
+data/
+dist/
