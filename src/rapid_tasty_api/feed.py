@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from tasty_api.recipe import Recipe
+from rapid_tasty_api.recipe import Recipe
 
 
 @dataclass(frozen=True, slots=True)

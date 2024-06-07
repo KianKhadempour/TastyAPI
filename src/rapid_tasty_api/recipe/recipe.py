@@ -8,7 +8,7 @@ import iso639
 import pycountry
 import pycountry.db
 
-from tasty_api.tag import Tag
+from rapid_tasty_api.tag import Tag
 
 from .credit import Credit
 from .instruction import Instruction

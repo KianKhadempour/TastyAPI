@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "tasty_api"
+name = "rapid_tasty_api"
 version = "0.1.2"
 authors = [{ name = "Kian Khadempour" }]
 description = "Typed Python wrapper for the Tasty API on RapidAPI."

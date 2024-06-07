@@ -3,9 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from tasty_api.recipe import Completion, Recipe
-from tasty_api.tag import Tag
-from tasty_api.tip import Tip
+from rapid_tasty_api.recipe import Completion, Recipe
+from rapid_tasty_api.tag import Tag
+from rapid_tasty_api.tip import Tip
 
 
 @dataclass(frozen=True, slots=True)

@@ -3,12 +3,17 @@ from enum import StrEnum
 
 import requests
 
-from tasty_api._constants import TASTY_HOST
-from tasty_api.data import CompletionData, RecipeListData, TagListData, TipListData
-from tasty_api.feed import Feed
-from tasty_api.recipe import Completion, Recipe
-from tasty_api.tag import Tag, tag_list_to_str
-from tasty_api.tip import Tip
+from rapid_tasty_api._constants import TASTY_HOST
+from rapid_tasty_api.data import (
+    CompletionData,
+    RecipeListData,
+    TagListData,
+    TipListData,
+)
+from rapid_tasty_api.feed import Feed
+from rapid_tasty_api.recipe import Completion, Recipe
+from rapid_tasty_api.tag import Tag, tag_list_to_str
+from rapid_tasty_api.tip import Tip
 
 
 class SortingMethod(StrEnum):
