@@ -14,7 +14,7 @@ recipe_list = client.get_recipes_list(0, 20, query="chicken soup")
 print(recipe_list)
 ```
 
-## Installation (not yet available)
+## Installation
 
 Install with pip:
 ```
