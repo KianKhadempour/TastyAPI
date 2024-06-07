@@ -5,7 +5,7 @@ TastyAPI is a typed Python wrapper for the [Tasty API](https://rapidapi.com/apid
 ## Example
 
 ```py
-from tasty_api import Client
+from rapid_tasty_api import Client
 
 client = Client("(api_key)")
 
@@ -18,7 +18,7 @@ print(recipe_list)
 
 Install with pip:
 ```
-$ pip install tasty-api
+$ pip install rapid_tasty_api
 ```
 
 ## Dependencies
@@ -31,4 +31,4 @@ TastyAPI has three dependencies:
 
 ## License
 
-[MIT License](https://github.com/KianKhadempour/TastyAPI/blob/main/LICENSE)
+MIT License
