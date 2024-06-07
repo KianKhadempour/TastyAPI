@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "rapid_tasty_api"
-version = "0.1.2"
+version = "0.1.3"
 authors = [{ name = "Kian Khadempour" }]
 description = "Typed Python wrapper for the Tasty API on RapidAPI."
 readme = "README.md"
@@ -34,10 +34,4 @@ Issues = "https://github.com/KianKhadempour/TastyAPI/issues"
 # Disable fix for unused imports (`F401`).
 unfixable = ["F401"]
 [tool.hatch.build]
-exclude = [
-    "docs/",
-    ".github/",
-    ".readthedocs.yml",
-    "Pipfile",
-    "Pipfile.lock",
-]
+exclude = ["docs/", ".github/", ".readthedocs.yml", "Pipfile", "Pipfile.lock"]
