@@ -40,7 +40,7 @@ class Component:
         )
 
     def __add__(self, other: Component) -> Component:
-        if self.id != other.id:
+        if self.ingredient.id != other.ingredient.id:
             raise IncompatibleComponentError(
                 "Components must be the same in order to add their amounts."
             )
@@ -55,16 +55,19 @@ class Component:
         )
 
         for measurement in self.measurements:
+            other_measurement_quantity = 0
             for other_measurement in other.measurements:
-                if measurement.id != other_measurement.id:
+                if measurement.unit.name != other_measurement.unit.name:
                     continue
+                other_measurement_quantity = other_measurement.quantity
+                break
 
-                ret.measurements.append(
-                    Measurement(
-                        id=measurement.id,
-                        quantity=measurement.quantity + other_measurement.quantity,
-                        unit=measurement.unit,
-                    )
+            ret.measurements.append(
+                Measurement(
+                    id=measurement.id,
+                    quantity=measurement.quantity + other_measurement_quantity,
+                    unit=measurement.unit,
                 )
+            )
 
         return ret

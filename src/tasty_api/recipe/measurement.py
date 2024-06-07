@@ -31,7 +31,7 @@ class Unit:
             display_plural=data["display_plural"],
             display_singular=data["display_singular"],
             name=data["name"],
-            system=data["system"],
+            system=data.get("system"),
         )
 
 
